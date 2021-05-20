@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+<head>
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!--Import materialize.css-->
+<link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+<script language="javascript" type="text/javascript" src="./abi.js"></script>
+<script>
+  window.addEventListener('load', async () => {
+
+    const owner = "0x23dFC16Dd3afB156928081043aDdbBCaEE64C493";
+    const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
+    const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
+
+    contract = new web3.eth.Contract(abi, owner);
+
+    const ownerFunds = async () => {
+      let funds = await contract.methods.getContractBalance().call();
+      return funds;
+    }
+    const bidder1Funds = async () => {
+      let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
+      return funds;
+    }
+    const bidder2Funds = async () => {
+      let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
+      return funds;
+    }
+
+    // Modern dapp browsers...
+    if (window.ethereum) {
+      window.web3 = new Web3(ethereum);
+      try {
+        // Request account access if needed
+        await ethereum.enable();
+        var ownerFunds = await ownerFunds();
+        var elm = document.getElementById("ownerFunds");
+        elm.innerHTML = ownerFunds;
+
+        var bidder1Funds = await ownerFunds();
+        var elm1 = document.getElementById("bidder1Funds");
+        elm.innerHTML = bidder1Funds;
+
+        var bidder2Funds = await ownerFunds();
+        var elm2 = document.getElementById("bidder2Funds");
+        elm.innerHTML = bidder2Funds;
+      } catch (error) {
+        // User denied account access...
+      }
+    }
+    // Non-dapp browsers...
+    else {
+      console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+    }
+  });
+
+</script>
+
+<div class="menu">
+  <nav>
+    <div class="nav-wrapper">
+      <a href=".html" class="brand-logo right">Auction Dapp</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="bidder1.html">Bidder1</a></li>
+        <li><a href="bidder2.html">Bidder2</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+</head>
+
+<body>
+
+<h4 class="center title">Bids & Addresses</h4>
+      <table class="striped">
+        <thead>
+          <tr>
+              <th>Name</th>
+              <th>Address</th>
+              <th>Bid</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>owner</td>
+            <td>"0x23dFC16Dd3afB156928081043aDdbBCaEE64C493"</td>
+            <td id="ownerFunds"></td>
+          </tr>
+          <tr>
+            <td>Bidder1</td>
+            <td>"0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7"</td>
+            <td id="bidder1Funds"></td>
+          </tr>
+          <tr>
+            <td>Bidder2</td>
+            <td>"0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7"</td>
+            <td id="bidder2Funds"></td>
+          </tr>
+        </tbody>
+      </table>
+</div>
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<style>
+  .menu{
+    width: 50%;
+    position: relative;
+    margin: auto;
+  }
+  .title{
+    padding-top: 10px;
+    padding-bottom: 20px;
+  }
+</style>
+</body>
+</html>
