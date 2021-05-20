@@ -20,7 +20,8 @@
     const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
     const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
 
-    contract = new web3.eth.Contract(abi, owner);
+    const provider = new Web3.providers.HttpProvider('http://127.0.0.1:8081');
+    const web3 = new Web3(provider);
 
     const ownerFunds = async () => {
       let funds = await contract.methods.getContractBalance().call();
