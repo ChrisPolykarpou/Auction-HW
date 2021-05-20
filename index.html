@@ -20,7 +20,7 @@
     const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
     const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
 
-    var contract = new web3.eth.Contract(abi, owner);
+    var contract = await ethereum.Contract(abi, owner);
 
     const ownerFunds = async () => {
       let funds = await contract.methods.getContractBalance().call();
@@ -41,7 +41,7 @@
       try {
         // Request account access if needed
         await ethereum.enable();
-        var ownerFunds = await ownerFunds();
+        ownerFunds = await ownerFunds();
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = ownerFunds;
 
