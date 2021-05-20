@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!--Import Google Icon Font-->
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <!--Import materialize.css-->
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <!--Let browser know website is optimized for mobile-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+  <script language="javascript" type="text/javascript" src="./abi.js"></script>
+  <script>
+    window.addEventListener('load', async () => {
+
+      const owner = "0x23dFC16Dd3afB156928081043aDdbBCaEE64C493";
+      const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
+      const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
+
+      contract = new web3.eth.Contract(abi, owner);
+
+      const highestBid = async () => {
+        let highestBid = await contract.methods.getHighestBid().call();
+        return highestBid;
+      }
+      const highestBidder = async () => {
+        let highestBidder = await contract.methods.getHighestBidder().call();
+        return highestBidder;
+      }
+      const ownerFunds = async () => {
+        let funds = await contract.methods.getContractBalance().call();
+        return funds;
+      }
+      const bidder1Funds = async () => {
+        let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
+        return funds;
+      }
+      const bidder2Funds = async () => {
+        let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
+        return funds;
+      }
+      const bid1 = async () => {
+        let succeed = await contract.methods.bid({value: 5, from: bidder1}).send();
+        return succeed;
+      }
+      const bid2 = async () => {
+        let succeed = await contract.methods.bid({value: 10, from: bidder2}).send();
+        return succeed;
+      }
+      const withdraw1 = async () => {
+        let succeed = await contract.methods.withdraw({from: bidder1}).send();
+        return succeed;
+      }
+      const withdraw2 = async () => {
+        let succeed = await contract.methods.withdraw({from: bidder2}).send();
+        return succeed;
+      }
+
+      // Modern dapp browsers...
+      if (window.ethereum) {
+        window.web3 = new Web3(ethereum);
+        try {
+          // Request account access if needed
+          await ethereum.enable();
+          var bidderFunds = await bidder2Funds();
+          var elm = document.getElementById("bidderFunds");
+          elm.innerHTML = bidderFunds;
+
+          var highestBid = await highestBid();
+          var elm1 = document.getElementById("highestBid");
+          elm.innerHTML = highestBid;
+
+          var balance = await ownerFunds();
+          var elm2 = document.getElementById("balance");
+          elm.innerHTML = balance;
+
+          var highestBidder = await highestBidder();
+          var elm3 = document.getElementById("highestBidder");
+          elm.innerHTML = highestBidder;
+
+        } catch (error) {
+          // User denied account access...
+        }
+      }
+      // Non-dapp browsers...
+      else {
+        console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
+      }
+    });
+
+  </script>
+<div class="menu">
+  <nav>
+    <div class="nav-wrapper">
+      <a href="index.html" class="brand-logo right">Auction Dapp</a>
+      <ul id="nav-mobile" class="left hide-on-med-and-down">
+        <li><a href="bidder1.html">Bidder1</a></li>
+        <li><a href="bidder2.html">Bidder2</a></li>
+      </ul>
+    </div>
+  </nav>
+
+
+
+</head>
+
+<body>
+  <div class="row">
+
+    <div class="col s6 info">
+      <h5>Bidder's Info</h5>
+      <p><b>Name: </b>Bidder2</p>
+      <p><b>Address: </b></p>
+      <p id="bidderFunds"><b>Total Bid: </b></p>
+    </div>
+    <div class="col s6 info">
+      <h5>Auction Info</h5>
+      <p id="highestBid"><b>Highest Bid: </b></p>
+      <p id="highestBidder"><b>Highest Bidder: </b></p>
+      <p id="balance"><b>Contract Balance: </b></p>
+    </div>
+  </div>
+
+  <div class="buttons">
+    <a class="waves-effect red lighten-1 btn"><i class="material-icons right">add</i>Bid</a>
+    <a class="waves-effect green lighten-1 btn"><i class="material-icons right">paid</i>Withdraw</a>
+  </div>
+</div>
+<!--JavaScript at end of body for optimized loading-->
+<script type="text/javascript" src="js/materialize.min.js"></script>
+<style>
+  .menu{
+    width: 50%;
+    position: relative;
+    margin: auto;
+  }
+  .info{
+    padding-top: 10px;
+    padding-left: 2px;
+  }
+  .buttons{
+    padding-top: 10px;
+    padding-left: 2px;
+  }
+</style>
+</body>
+</html>
