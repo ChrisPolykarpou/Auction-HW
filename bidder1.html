@@ -102,18 +102,16 @@ window.addEventListener('load', async () => {
         } catch (error) {
           // User denied account access...
         }
+        // Buttons Code
+        var bid = document.getElementById("bidBtn");
+        var withdraw = document.getElementById("withdrawBtn");
+        bid.addEventListener("click", async() => {
+          console.log("TEST");
+        });
+        withdraw.addEventListener("click", async() => {
+          console.log("TEST");
+        });
       }
-
-      // Buttons Code
-      var bid = document.getElementById("bidBtn");
-      var withdraw = document.getElementById("withdrawBtn");
-      bid.addEventListener("click", async() => {
-        console.log("TEST");
-      });
-      withdraw.addEventListener("click", async() => {
-        console.log("TEST");
-      });
-
       // Non-dapp browsers...
       else {
         console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
