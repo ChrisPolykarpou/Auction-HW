@@ -57,11 +57,12 @@
           elm2.innerHTML = funds2;
         }
         catch(error){
-          console.log("error in bidderFunds");
+          var elm1 = document.getElementById("bidder1Funds");
+          elm1.innerHTML = 0;
+          var elm2 = document.getElementById("bidder2Funds");
+          elm2.innerHTML = 0;
         }
 
-
-        console.log("PASS");
       } catch (error) {
         // User denied account access...
       }
