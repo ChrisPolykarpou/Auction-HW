@@ -107,12 +107,14 @@ window.addEventListener('load', async () => {
         var withdraw = document.getElementById("withdrawBtn");
 
         bid.addEventListener("click", async() => {
-          let bidding = await bid1();
-          if(!bidding)
-            console.log("Bidding unsuccessful");
-          let updateHighBid = await highestBid();
-          var elm2 = document.getElementById("highestBid");
-          elm2.innerHTML = "<b>Highest Bid: </b>"+updateHighBid;
+          try {
+            let bidding = await bid1();
+            let updateHighBid = await highestBid();
+            var elm2 = document.getElementById("highestBid");
+            elm2.innerHTML = "<b>Highest Bid: </b>"+updateHighBid;
+          } catch (e) {
+              console.log("Bidding unsuccessful");
+          }
         });
 
         withdraw.addEventListener("click", async() => {
