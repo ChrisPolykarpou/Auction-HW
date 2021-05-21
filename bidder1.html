@@ -60,7 +60,7 @@ window.addEventListener('load', async () => {
         return succeed;
       }
       const withdraw2 = async () => {
-        let succeed = await AuctionContract.methods.withdraw().call({from: bidder2});
+        let succeed = await AuctionContract.methods.withdraw().send({from: bidder2});
         return succeed;
       }
 
@@ -123,7 +123,13 @@ window.addEventListener('load', async () => {
         });
 
         withdraw.addEventListener("click", async() => {
-
+          try{
+            let withdraw = await withdraw1();
+            let updateContract = await ownerFunds();
+            elm.innerHTML = "<b>Contract Balance: </b>"+updateContract;
+          } catch(e){
+            console.log("You are not able to withdraw!");
+          }
         });
       }
       // Non-dapp browsers...
