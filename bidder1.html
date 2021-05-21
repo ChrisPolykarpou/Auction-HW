@@ -73,7 +73,7 @@ window.addEventListener('load', async () => {
           let funds;
           funds = await ownerFunds();
           var elm = document.getElementById("balance");
-          elm.innerHTML = funds;
+          elm.innerHTML = "<b>Contract Balance: </b>"+funds;
 
           // let funds = await bidder1Funds();
           // var elm = document.getElementById("bidderFunds");
@@ -120,13 +120,13 @@ window.addEventListener('load', async () => {
       <h5>Bidder's Info</h5>
       <p><b>Name: </b>Bidder1</p>
       <p><b>Address: </b>0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7</p>
-      <p><b>Total Bid: </b><p id="bidderFunds"></p></p>
+      <p id="bidderFunds"><b>Total Bid: </b></p>
     </div>
     <div class="col s6 info">
       <h5>Auction Info</h5>
-      <p><b>Highest Bid: </b><p id="highestBid"></p></p>
-      <p><b>Highest Bidder: </b><p id="highestBidder"></p></p>
-      <p><b>Contract Balance: </b><p id="balance"></p></p>
+      <p id="highestBid"><b>Highest Bid: </b></p>
+      <p id="highestBidder"><b>Highest Bidder: </b></p>
+      <p id="balance"><b>Contract Balance: </b></p>
     </div>
   </div>
 
