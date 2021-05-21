@@ -25,42 +25,42 @@ window.addEventListener('load', async () => {
           window.ethereum.enable();
       }
 
-      var contract = new window.web3.eth.Contract(abi, contractAdd);
+      var AuctionContract = new window.web3.eth.Contract(abi, contractAdd);
 
       const highestBid = async () => {
-        let highestBid = await contract.methods.getHighestBid().call();
+        let highestBid = await AuctionContract.methods.getHighestBid().call();
         return highestBid;
       }
       const highestBidder = async () => {
-        let highestBidder = await contract.methods.getHighestBidder().call();
+        let highestBidder = await AuctionContract.methods.getHighestBidder().call();
         return highestBidder;
       }
       const ownerFunds = async () => {
-        let funds = await contract.methods.getContractBalance().call();
+        let funds = await AuctionContract.methods.getContractBalance().call();
         return funds;
       }
       const bidder1Funds = async () => {
-        let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
+        let funds = await AuctionContract.methods.getBidderFunds({from: bidder1}).call();
         return funds;
       }
       const bidder2Funds = async () => {
-        let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
+        let funds = await AuctionContract.methods.getBidderFunds({from: bidder2}).call();
         return funds;
       }
       const bid1 = async () => {
-        let succeed = await contract.methods.bid({value: 5, from: bidder1}).send();
+        let succeed = await AuctionContract.methods.bid({value: 5, from: bidder1}).send();
         return succeed;
       }
       const bid2 = async () => {
-        let succeed = await contract.methods.bid({value: 10, from: bidder2}).send();
+        let succeed = await AuctionContract.methods.bid({value: 10, from: bidder2}).send();
         return succeed;
       }
       const withdraw1 = async () => {
-        let succeed = await contract.methods.withdraw({from: bidder1}).send();
+        let succeed = await AuctionContract.methods.withdraw({from: bidder1}).send();
         return succeed;
       }
       const withdraw2 = async () => {
-        let succeed = await contract.methods.withdraw({from: bidder2}).send();
+        let succeed = await AuctionContract.methods.withdraw({from: bidder2}).send();
         return succeed;
       }
 
@@ -81,7 +81,7 @@ window.addEventListener('load', async () => {
           let balance = await ownerFunds();
           var elm2 = document.getElementById("balance");
           elm.innerHTML = balance;
-
+          console.log("OK");
           // let highBidder = await highestBidder();
           // var elm3 = document.getElementById("highestBidder");
           // elm.innerHTML = highBidder;
