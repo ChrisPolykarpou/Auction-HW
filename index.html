@@ -44,11 +44,11 @@
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = ownerFunds;
 
-        var bidder1Funds = await ownerFunds();
+        bidder1Funds = await ownerFunds();
         var elm1 = document.getElementById("bidder1Funds");
         elm.innerHTML = bidder1Funds;
 
-        var bidder2Funds = await ownerFunds();
+        bidder2Funds = await ownerFunds();
         var elm2 = document.getElementById("bidder2Funds");
         elm.innerHTML = bidder2Funds;
       } catch (error) {
