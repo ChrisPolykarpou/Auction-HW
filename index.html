@@ -19,6 +19,10 @@
     const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
     const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
 
+    if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        window.ethereum.enable();
+    }
     var AuctionContract = new window.web3.eth.Contract(abi, contractAdd);
 
     const ownerFunds = async () => {
@@ -38,12 +42,12 @@
     if (window.ethereum) {
       window.web3 = new Web3(ethereum);
       try {
+        console.log("PASS");
         // Request account access if needed
-        console.log("Pass");
         await ethereum.enable();
         ownerFunds = await ownerFunds();
         var elm = document.getElementById("ownerFunds");
-        elm.innerHTML = "test";
+        elm.innerHTML = ownerFunds;
 
         bidder1Funds = await ownerFunds();
         var elm1 = document.getElementById("bidder1Funds");
@@ -53,7 +57,7 @@
         var elm2 = document.getElementById("bidder2Funds");
         elm.innerHTML = bidder2Funds;
       } catch (error) {
-        console.log("Error in accessing accounts");
+        // User denied account access...
       }
     }
     // Non-dapp browsers...
