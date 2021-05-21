@@ -37,6 +37,10 @@
       let funds = await AuctionContract.methods.getBidderFunds().call({from: bidder2});
       return funds;
     }
+    const withdraw = async () => {
+      let succeed = await AuctionContract.methods.withdraw().send({from: owner});
+      return succeed;
+    }
 
     // Modern dapp browsers...
     if (window.ethereum) {
@@ -70,7 +74,13 @@
       }
       let rec = document.getElementById("ownerBtn");
       rec.addEventListener('click', async () => {
-
+        try{
+          let receive = await withdraw();
+          let updateFunds = await ownerFunds();
+          elm.innerHTML = updateFunds;
+        }catch(e){
+          console.log("Unable to withdraw");
+        }
       });
     }
     // Non-dapp browsers...
