@@ -48,11 +48,11 @@
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = funds;
 
-        let funds1 = await ownerFunds();
+        let funds1 = await bidder1Funds();
         var elm1 = document.getElementById("bidder1Funds");
         elm1.innerHTML = funds1;
 
-        let funds2 = await ownerFunds();
+        let funds2 = await bidder2Funds();
         var elm2 = document.getElementById("bidder2Funds");
         elm2.innerHTML = funds2;
         console.log("PASS");
