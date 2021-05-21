@@ -14,7 +14,7 @@
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
 <script language="javascript" type="text/javascript" src="abi.js"></script>
 <script>
-  window.onload = function WindowLoad(event) {
+  window.addEventListener('click', async () => {
     console.log("TEST");
     const owner = "0x23dFC16Dd3afB156928081043aDdbBCaEE64C493";
     const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
@@ -60,7 +60,7 @@
     else {
       console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
     }
-  };
+  });
 
 </script>
 
