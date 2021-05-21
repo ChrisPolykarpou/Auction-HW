@@ -30,11 +30,11 @@
       return funds;
     }
     const bidder1Funds = async () => {
-      let funds = await AuctionContract.methods.getBidderFunds({from: bidder1}).send();
+      let funds = await AuctionContract.methods.getBidderFunds({from: bidder1}).call();
       return funds;
     }
     const bidder2Funds = async () => {
-      let funds = await AuctionContract.methods.getBidderFunds({from: bidder2}).send();
+      let funds = await AuctionContract.methods.getBidderFunds({from: bidder2}).call();
       return funds;
     }
 
@@ -48,13 +48,19 @@
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = funds;
 
-        let funds1 = await bidder1Funds();
-        var elm1 = document.getElementById("bidder1Funds");
-        elm1.innerHTML = funds1;
+        try{
+          let funds1 = await bidder1Funds();
+          let funds2 = await bidder2Funds();
+          var elm1 = document.getElementById("bidder1Funds");
+          elm1.innerHTML = funds1;
+          var elm2 = document.getElementById("bidder2Funds");
+          elm2.innerHTML = funds2;
+        }
+        catch(error){
+          console.log("error in bidderFunds");
+        }
 
-        let funds2 = await bidder2Funds();
-        var elm2 = document.getElementById("bidder2Funds");
-        elm2.innerHTML = funds2;
+
         console.log("PASS");
       } catch (error) {
         // User denied account access...
