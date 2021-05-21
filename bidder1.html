@@ -16,9 +16,7 @@
 window.addEventListener('load', async () => {
 
       const contractAdd = "0xF4e53fC470785135c2f9208dF49bEFA8266b230b";
-      const owner = "0x23dFC16Dd3afB156928081043aDdbBCaEE64C493";
       const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
-      const bidder2 = "0xda60f5665A5672Fa3D97892272846f36A518f382";
 
       if (window.ethereum) {
           window.web3 = new Web3(window.ethereum);
@@ -43,24 +41,12 @@ window.addEventListener('load', async () => {
         let funds = await AuctionContract.methods.getBidderFunds().call({from: bidder1});
         return funds;
       }
-      const bidder2Funds = async () => {
-        let funds = await AuctionContract.methods.getBidderFunds().call({from: bidder2});
-        return funds;
-      }
       const bid1 = async () => {
         let succeed = await AuctionContract.methods.bid().send({from: bidder1, value: 5});
         return succeed;
       }
-      const bid2 = async () => {
-        let succeed = await AuctionContract.methods.bid().send({from: bidder2, value: 5});
-        return succeed;
-      }
       const withdraw1 = async () => {
         let succeed = await AuctionContract.methods.withdraw().send({from: bidder1});
-        return succeed;
-      }
-      const withdraw2 = async () => {
-        let succeed = await AuctionContract.methods.withdraw().send({from: bidder2});
         return succeed;
       }
 
