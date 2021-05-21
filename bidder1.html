@@ -103,6 +103,17 @@ window.addEventListener('load', async () => {
           // User denied account access...
         }
       }
+
+      // Buttons Code
+      var bid = document.getElementById("bidBtn");
+      var withdraw = document.getElementById("withdrawBtn");
+      bid.addEventListener("click", async() => {
+        console.log("TEST");
+      });
+      withdraw.addEventListener("click", async() => {
+        console.log("TEST");
+      });
+
       // Non-dapp browsers...
       else {
         console.log('Non-Ethereum browser detected. You should consider trying MetaMask!');
@@ -143,8 +154,8 @@ window.addEventListener('load', async () => {
   </div>
 
   <div class="buttons">
-    <a class="waves-effect red lighten-1 btn"><i class="material-icons right">add</i>Bid 5</a>
-    <a class="waves-effect green lighten-1 btn"><i class="material-icons right">paid</i>Withdraw</a>
+    <a id="bidBtn" class="waves-effect red lighten-1 btn"><i class="material-icons right">add</i>Bid 5</a>
+    <a id="withdrawBtn" class="waves-effect green lighten-1 btn"><i class="material-icons right">paid</i>Withdraw</a>
   </div>
 </div>
 <style>
