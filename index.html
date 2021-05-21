@@ -26,7 +26,7 @@
     var AuctionContract = new window.web3.eth.Contract(abi, contractAdd);
 
     const ownerFunds = async () => {
-      let funds = await AuctionContract.methods.getAuctionContractBalance().call();
+      let funds = await AuctionContract.methods.getHighestBid().call();
       return funds;
     }
     const bidder1Funds = async () => {
