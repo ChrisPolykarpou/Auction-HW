@@ -23,6 +23,9 @@
     if (typeof window.ethereum !== 'undefined') {
       console.log('MetaMask is installed!');
     }
+    else {
+      console.log('Metamask not found');
+    }
     var contract = new web3.eth.Contract(abi, owner);
 
     const ownerFunds = async () => {
