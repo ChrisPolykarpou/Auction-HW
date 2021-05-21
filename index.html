@@ -68,6 +68,10 @@
       } catch (error) {
         // User denied account access...
       }
+      let rec = document.getElementById("ownerBtn");
+      rec.addEventListener('click', async () => {
+
+      });
     }
     // Non-dapp browsers...
     else {
@@ -120,8 +124,8 @@
           </tr>
         </tbody>
       </table>
-      <button class="btn waves-effect waves-light right" type="submit" name="action">Submit
-        <i class="material-icons right">Withdraw bidding (owner)</i>
+      <button id="ownerBtn" class="btn waves-effect waves-light right" type="submit" name="action">Withdraw bidding (owner)
+        <i class="material-icons right">send</i>
       </button>
 </div>
 <style>
