@@ -1,61 +1,66 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <!--Import Google Icon Font-->
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <!--Import materialize.css-->
-  <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-  <!-- Compiled and minified CSS -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-  <!-- Compiled and minified JavaScript -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-  <!--Let browser know website is optimized for mobile-->
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
-  <script language="javascript" type="text/javascript" src="./abi.js"></script>
-  <script>
-    window.addEventListener('load', async () => {
+<!--Import Google Icon Font-->
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified CSS -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<!-- Compiled and minified JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<!--Let browser know website is optimized for mobile-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
+<script language="javascript" type="text/javascript" src="abi.js"></script>
+<script>
+window.addEventListener('load', async () => {
 
+      const contractAdd = "0xF4e53fC470785135c2f9208dF49bEFA8266b230b";
       const owner = "0x23dFC16Dd3afB156928081043aDdbBCaEE64C493";
       const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
-      const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
+      const bidder2 = "0xda60f5665A5672Fa3D97892272846f36A518f382";
 
-      contract = new web3.eth.Contract(abi, owner);
+      if (window.ethereum) {
+          window.web3 = new Web3(window.ethereum);
+          window.ethereum.enable();
+      }
+
+      var AuctionContract = new window.web3.eth.Contract(abi, contractAdd);
 
       const highestBid = async () => {
-        let highestBid = await contract.methods.getHighestBid().call();
+        let highestBid = await AuctionContract.methods.getHighestBid().call();
         return highestBid;
       }
       const highestBidder = async () => {
-        let highestBidder = await contract.methods.getHighestBidder().call();
+        let highestBidder = await AuctionContract.methods.getHighestBidder().call();
         return highestBidder;
       }
       const ownerFunds = async () => {
-        let funds = await contract.methods.getContractBalance().call();
+        let funds = await AuctionContract.methods.getContractBalance().call();
         return funds;
       }
       const bidder1Funds = async () => {
-        let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
+        let funds = await AuctionContract.methods.getBidderFunds({from: bidder1}).call();
         return funds;
       }
       const bidder2Funds = async () => {
-        let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
+        let funds = await AuctionContract.methods.getBidderFunds({from: bidder2}).call();
         return funds;
       }
       const bid1 = async () => {
-        let succeed = await contract.methods.bid({value: 5, from: bidder1}).send();
+        let succeed = await AuctionContract.methods.bid().send({from: bidder1, value: 5});
         return succeed;
       }
       const bid2 = async () => {
-        let succeed = await contract.methods.bid({value: 10, from: bidder2}).send();
+        let succeed = await AuctionContract.methods.bid().send({from: bidder2, value: 10});
         return succeed;
       }
       const withdraw1 = async () => {
-        let succeed = await contract.methods.withdraw({from: bidder1}).send();
+        let succeed = await AuctionContract.methods.withdraw({from: bidder1});
         return succeed;
       }
       const withdraw2 = async () => {
-        let succeed = await contract.methods.withdraw({from: bidder2}).send();
+        let succeed = await AuctionContract.methods.withdraw({from: bidder2});
         return succeed;
       }
 
@@ -65,25 +70,56 @@
         try {
           // Request account access if needed
           await ethereum.enable();
-          var bidderFunds = await bidder2Funds();
-          var elm = document.getElementById("bidderFunds");
-          elm.innerHTML = bidderFunds;
+          let funds;
+          funds = await ownerFunds();
+          var elm = document.getElementById("balance");
+          elm.innerHTML = "<b>Contract Balance: </b>"+funds;
 
-          var highestBid = await highestBid();
-          var elm1 = document.getElementById("highestBid");
-          elm.innerHTML = highestBid;
-
-          var balance = await ownerFunds();
-          var elm2 = document.getElementById("balance");
-          elm.innerHTML = balance;
-
-          var highestBidder = await highestBidder();
-          var elm3 = document.getElementById("highestBidder");
-          elm.innerHTML = highestBidder;
-
+          try{
+            funds = await bidder1Funds();
+            var elm1 = document.getElementById("bidderFunds");
+            elm1.innerHTML = funds;
+          } catch{
+            var elm1 = document.getElementById("bidderFunds");
+            elm1.innerHTML = "<b>Highest Bid: </b>"+0;
+          }
+          try{
+            let highBid = await highestBid();
+            var elm2 = document.getElementById("highestBid");
+            elm2.innerHTML = "<b>Highest Bid: </b>"+highBid;
+          } catch{
+            var elm2 = document.getElementById("highestBid");
+            elm2.innerHTML = "<b>Highest Bid: </b>"+"none";
+          }
+          try{
+            let highBidder = await highestBidder();
+            var elm3 = document.getElementById("highestBidder");
+            elm3.innerHTML = "<b>Highest Bidder: </b>"+highBidder;
+          } catch{
+              var elm3 = document.getElementById("highestBidder");
+              elm3.innerHTML = "<b>Highest Bidder: </b>"+"none";
+          }
         } catch (error) {
           // User denied account access...
         }
+        // Buttons Code
+        var bid = document.getElementById("bidBtn");
+        var withdraw = document.getElementById("withdrawBtn");
+
+        bid.addEventListener("click", async() => {
+          try {
+            let bidding = await bid2();
+            let updateHighBid = await highestBid();
+            var elm2 = document.getElementById("highestBid");
+            elm2.innerHTML = "<b>Highest Bid: </b>"+updateHighBid;
+          } catch (e) {
+              console.log("Bidding unsuccessful");
+          }
+        });
+
+        withdraw.addEventListener("click", async() => {
+
+        });
       }
       // Non-dapp browsers...
       else {
@@ -113,7 +149,7 @@
     <div class="col s6 info">
       <h5>Bidder's Info</h5>
       <p><b>Name: </b>Bidder2</p>
-      <p><b>Address: </b></p>
+      <p><b>Address: </b>0xda60f5665A5672Fa3D97892272846f36A518f382</p>
       <p id="bidderFunds"><b>Total Bid: </b></p>
     </div>
     <div class="col s6 info">
@@ -125,13 +161,13 @@
   </div>
 
   <div class="buttons">
-    <a class="waves-effect red lighten-1 btn"><i class="material-icons right">add</i>Bid</a>
-    <a class="waves-effect green lighten-1 btn"><i class="material-icons right">paid</i>Withdraw</a>
+    <a id="bidBtn" class="waves-effect red lighten-1 btn"><i class="material-icons right">add</i>Bid 10</a>
+    <a id="withdrawBtn" class="waves-effect green lighten-1 btn"><i class="material-icons right">paid</i>Withdraw</a>
   </div>
 </div>
 <style>
   .menu{
-    width: 50%;
+    width: 55%;
     position: relative;
     margin: auto;
   }
