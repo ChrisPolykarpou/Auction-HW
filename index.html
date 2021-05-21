@@ -19,7 +19,6 @@
     const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
     const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
 
-    ethereum.request({ method: 'eth_requestAccounts' });
     var contract = new web3.eth.Contract(abi, contractAdd);
 
     const ownerFunds = async () => {
