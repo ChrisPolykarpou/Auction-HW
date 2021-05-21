@@ -76,17 +76,17 @@ window.addEventListener('load', async () => {
           elm.innerHTML = "<b>Contract Balance: </b>"+funds;
 
           funds = await bidder1Funds();
-          var elm = document.getElementById("bidderFunds");
-          elm.innerHTML = funds;
+          var elm1 = document.getElementById("bidderFunds");
+          elm1.innerHTML = funds;
           console.log("bid okay");
 
           // let highBid = await highestBid();
-          // var elm1 = document.getElementById("highestBid");
-          // elm.innerHTML = "<b>Highest Bid: </b>"+highBid;
+          // var elm2 = document.getElementById("highestBid");
+          // elm2.innerHTML = "<b>Highest Bid: </b>"+highBid;
           //
           // let highBidder = await highestBidder();
           // var elm3 = document.getElementById("highestBidder");
-          // elm.innerHTML = "<b>Highest Bidder: </b>"+highBidder;
+          // elm3.innerHTML = "<b>Highest Bidder: </b>"+highBidder;
 
         } catch (error) {
           // User denied account access...
