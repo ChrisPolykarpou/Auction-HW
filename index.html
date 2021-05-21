@@ -44,18 +44,17 @@
       try {
         // Request account access if needed
         await ethereum.enable();
-        let funds;
-        funds = await ownerFunds();
+        let funds = await ownerFunds();
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = funds;
 
-        funds = await ownerFunds();
+        let funds1 = await ownerFunds();
         var elm1 = document.getElementById("bidder1Funds");
-        elm.innerHTML = funds;
+        elm.innerHTML = funds1;
 
-        funds = await bidder2Funds();
+        let funds2 = await bidder2Funds();
         var elm2 = document.getElementById("bidder2Funds");
-        elm.innerHTML = funds;
+        elm.innerHTML = funds2;
       } catch (error) {
         // User denied account access...
       }
