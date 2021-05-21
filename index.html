@@ -49,14 +49,13 @@
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = funds;
 
-        funds = await bidder1Funds();
+        funds = await ownerFunds();
         var elm1 = document.getElementById("bidder1Funds");
         elm.innerHTML = funds;
 
         funds = await bidder2Funds();
         var elm2 = document.getElementById("bidder2Funds");
         elm.innerHTML = funds;
-        console.log("OK-index");
       } catch (error) {
         // User denied account access...
       }
