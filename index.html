@@ -48,13 +48,11 @@
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = funds;
 
-        await ethereum.enable();
-        let funds1 = await bidder1Funds();
+        let funds1 = 1;
         var elm1 = document.getElementById("bidder1Funds");
         elm.innerHTML = funds1;
 
-        await ethereum.enable();
-        let funds2 = await bidder2Funds();
+        let funds2 = 2;
         var elm2 = document.getElementById("bidder2Funds");
         elm.innerHTML = funds2;
         console.log("PASS");
