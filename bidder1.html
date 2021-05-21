@@ -29,34 +29,24 @@ window.addEventListener('load', async () => {
 
       const highestBid = async () => {
         let highestBid = await contract.methods.getHighestBid().call();
-        if(!highestBid)
-          return 0;
         return highestBid;
       }
       const highestBidder = async () => {
         let highestBidder = await contract.methods.getHighestBidder().call();
-        if(!highestBidder)
-          return "none";
         return highestBidder;
       }
-      const ownerFunds = async () => {
-        let funds = await contract.methods.getContractBalance().call();
-        if(!funds)
-          return 0;
-        return funds;
-      }
-      const bidder1Funds = async () => {
-        let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
-        if(!funds)
-          return 0;
-        return funds;
-      }
-      const bidder2Funds = async () => {
-        let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
-        if(!funds)
-          return 0;
-        return funds;
-      }
+      // const ownerFunds = async () => {
+      //   let funds = await contract.methods.getContractBalance().call();
+      //   return funds;
+      // }
+      // const bidder1Funds = async () => {
+      //   let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
+      //   return funds;
+      // }
+      // const bidder2Funds = async () => {
+      //   let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
+      //   return funds;
+      // }
       const bid1 = async () => {
         let succeed = await contract.methods.bid({value: 5, from: bidder1}).send();
         return succeed;
