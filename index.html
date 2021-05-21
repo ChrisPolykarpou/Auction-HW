@@ -42,20 +42,20 @@
     if (window.ethereum) {
       window.web3 = new Web3(ethereum);
       try {
-
         // Request account access if needed
         await ethereum.enable();
-        let ownerFundsVar = await ownerFunds();
+        let funds;
+        funds = await ownerFunds();
         var elm = document.getElementById("ownerFunds");
-        elm.innerHTML = ownerFundsVar;
+        elm.innerHTML = funds;
 
-        bidder1Funds = await ownerFunds();
+        funds = await bidder1Funds();
         var elm1 = document.getElementById("bidder1Funds");
-        elm.innerHTML = bidder1Funds;
+        elm.innerHTML = funds;
 
-        bidder2Funds = await ownerFunds();
+        funds = await bidder2Funds();
         var elm2 = document.getElementById("bidder2Funds");
-        elm.innerHTML = bidder2Funds;
+        elm.innerHTML = funds;
       } catch (error) {
         // User denied account access...
       }
