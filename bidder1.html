@@ -70,12 +70,15 @@ window.addEventListener('load', async () => {
         try {
           // Request account access if needed
           await ethereum.enable();
-          console.log("OK");
           let funds = await bidder1Funds();
+          if(!funds)
+            funds = 0;
           var elm = document.getElementById("bidderFunds");
           elm.innerHTML = funds;
 
           let highBid = await highestBid();
+          if(!highBid)
+            highBid = 0;
           var elm1 = document.getElementById("highestBid");
           elm.innerHTML = highBid;
 
