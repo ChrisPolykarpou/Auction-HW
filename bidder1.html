@@ -64,10 +64,10 @@ window.addEventListener('load', async () => {
           try{
             funds = await bidder1Funds();
             var elm1 = document.getElementById("bidderFunds");
-            elm1.innerHTML = "<b>Highest Bid: </b>"+funds;
+            elm1.innerHTML = "<b>Total Bid: </b>"+funds;
           } catch{
             var elm1 = document.getElementById("bidderFunds");
-            elm1.innerHTML = "<b>Highest Bid: </b>"+0;
+            elm1.innerHTML = "<b>Total Bid: </b>"+0;
           }
           try{
             let highBid = await highestBid();
