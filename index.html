@@ -10,7 +10,6 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
 <!--Let browser know website is optimized for mobile-->
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js"></script>
 <script src="https://cdn.jsdelivr.net/gh/ethereum/web3.js@1.0.0-beta.36/dist/web3.min.js" integrity="sha256-nWBTbvxhJgjslRyuAKJHK+XcZPlCnmIAAMixz6EefVk=" crossorigin="anonymous"></script>
 <script language="javascript" type="text/javascript" src="abi.js"></script>
 <script>
@@ -20,16 +19,11 @@
     const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
     const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
 
-    const Eth = require('ethjs-query')
-    const EthContract = require('ethjs-contract')
-    // access contract
-    const eth = new Eth(web3.currentProvider);
-    const contract = new EthContract(eth);
-    const MiniToken = contract(abi);
-    const AuctionContract = MiniToken.at(AuctionContractAdd);
-
-
-    //var AuctionContract = new web3.eth.Contract(abi, AuctionContractAdd);
+    if (window.ethereum) {
+        window.web3 = new Web3(window.ethereum);
+        window.ethereum.enable();
+    }
+    var AuctionContract = new window.web3.eth.Contract(abi, AuctionContractAdd);
 
     const ownerFunds = async () => {
       let funds = await AuctionContract.methods.getAuctionContractBalance().call();
