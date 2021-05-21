@@ -30,11 +30,11 @@
       return funds;
     }
     const bidder1Funds = async () => {
-      let funds = await AuctionContract.methods.getBidderFunds({from: bidder1}).call();
+      let funds = await AuctionContract.methods.getBidderFunds().call({from: bidder1});
       return funds;
     }
     const bidder2Funds = async () => {
-      let funds = await AuctionContract.methods.getBidderFunds({from: bidder2}).call();
+      let funds = await AuctionContract.methods.getBidderFunds().call({from: bidder2});
       return funds;
     }
 
