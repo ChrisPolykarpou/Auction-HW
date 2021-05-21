@@ -70,6 +70,11 @@ window.addEventListener('load', async () => {
         try {
           // Request account access if needed
           await ethereum.enable();
+          let funds;
+          funds = await ownerFunds();
+          var elm = document.getElementById("balance");
+          elm.innerHTML = funds;
+          
           // let funds = await bidder1Funds();
           // var elm = document.getElementById("bidderFunds");
           // elm.innerHTML = funds;
@@ -78,11 +83,6 @@ window.addEventListener('load', async () => {
           // var elm1 = document.getElementById("highestBid");
           // elm.innerHTML = highBid;
           //
-          //let balance = await ownerFunds();
-          let balance = 2;
-          var elm2 = document.getElementById("balance");
-          elm.innerHTML = balance;
-          console.log("OK");
           // let highBidder = await highestBidder();
           // var elm3 = document.getElementById("highestBidder");
           // elm.innerHTML = highBidder;
