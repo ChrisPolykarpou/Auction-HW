@@ -45,9 +45,9 @@
 
         // Request account access if needed
         await ethereum.enable();
-        //ownerFunds = await ownerFunds();
+        let ownerFundsVar = await ownerFunds();
         var elm = document.getElementById("ownerFunds");
-        elm.innerHTML = ownerFunds;
+        elm.innerHTML = ownerFundsVar;
 
         bidder1Funds = await ownerFunds();
         var elm1 = document.getElementById("bidder1Funds");
