@@ -64,7 +64,7 @@ window.addEventListener('load', async () => {
           try{
             funds = await bidder1Funds();
             var elm1 = document.getElementById("bidderFunds");
-            elm1.innerHTML = funds;
+            elm1.innerHTML = "<b>Highest Bid: </b>"+funds;
           } catch{
             var elm1 = document.getElementById("bidderFunds");
             elm1.innerHTML = "<b>Highest Bid: </b>"+0;
