@@ -70,6 +70,7 @@ window.addEventListener('load', async () => {
         try {
           // Request account access if needed
           await ethereum.enable();
+          console.log("OK");
           let funds = await bidder1Funds();
           var elm = document.getElementById("bidderFunds");
           elm.innerHTML = funds;
@@ -85,7 +86,7 @@ window.addEventListener('load', async () => {
           let highBidder = await highestBidder();
           var elm3 = document.getElementById("highestBidder");
           elm.innerHTML = highBidder;
-          console.log("OK");
+
         } catch (error) {
           // User denied account access...
         }
