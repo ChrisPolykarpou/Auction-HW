@@ -35,18 +35,18 @@ window.addEventListener('load', async () => {
         let highestBidder = await contract.methods.getHighestBidder().call();
         return highestBidder;
       }
-      // const ownerFunds = async () => {
-      //   let funds = await contract.methods.getContractBalance().call();
-      //   return funds;
-      // }
-      // const bidder1Funds = async () => {
-      //   let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
-      //   return funds;
-      // }
-      // const bidder2Funds = async () => {
-      //   let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
-      //   return funds;
-      // }
+      const ownerFunds = async () => {
+        let funds = await contract.methods.getContractBalance().call();
+        return funds;
+      }
+      const bidder1Funds = async () => {
+        let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
+        return funds;
+      }
+      const bidder2Funds = async () => {
+        let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
+        return funds;
+      }
       const bid1 = async () => {
         let succeed = await contract.methods.bid({value: 5, from: bidder1}).send();
         return succeed;
@@ -70,17 +70,17 @@ window.addEventListener('load', async () => {
         try {
           // Request account access if needed
           await ethereum.enable();
-          let funds = await bidder1Funds();
-          var elm = document.getElementById("bidderFunds");
-          elm.innerHTML = funds;
+          // let funds = await bidder1Funds();
+          // var elm = document.getElementById("bidderFunds");
+          // elm.innerHTML = funds;
 
           let highBid = await highestBid();
           var elm1 = document.getElementById("highestBid");
           elm.innerHTML = highBid;
 
-          let balance = await ownerFunds();
-          var elm2 = document.getElementById("balance");
-          elm.innerHTML = balance;
+          // let balance = await ownerFunds();
+          // var elm2 = document.getElementById("balance");
+          // elm.innerHTML = balance;
 
           let highBidder = await highestBidder();
           var elm3 = document.getElementById("highestBidder");
