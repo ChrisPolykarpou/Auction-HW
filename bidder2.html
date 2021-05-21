@@ -76,9 +76,9 @@ window.addEventListener('load', async () => {
           elm.innerHTML = "<b>Contract Balance: </b>"+funds;
 
           try{
-            funds = await bidder1Funds();
+            funds = await bidder2Funds();
             var elm1 = document.getElementById("bidderFunds");
-            elm1.innerHTML = funds;
+            elm1.innerHTML = "<b>Highest Bid: </b>"+funds;
           } catch{
             var elm1 = document.getElementById("bidderFunds");
             elm1.innerHTML = "<b>Highest Bid: </b>"+0;
@@ -110,8 +110,13 @@ window.addEventListener('load', async () => {
           try {
             let bidding = await bid2();
             let updateHighBid = await highestBid();
-            var elm2 = document.getElementById("highestBid");
             elm2.innerHTML = "<b>Highest Bid: </b>"+updateHighBid;
+            let updateHighBidder = await highestBidder();
+            elm3.innerHTML = "<b>Highest Bidder: </b>"+updateHighBidder;
+            let updateContract = await ownerFunds();
+            elm.innerHTML = "<b>Contract Balance: </b>"+updateContract;
+            let updateFunds = await bidder2Funds();
+            elm1.innerHTML = "<b>Highest Bid: </b>"+updateFunds;
           } catch (e) {
               console.log("Bidding unsuccessful");
           }

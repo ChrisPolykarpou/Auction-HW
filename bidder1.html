@@ -110,8 +110,13 @@ window.addEventListener('load', async () => {
           try {
             let bidding = await bid1();
             let updateHighBid = await highestBid();
-            var elm2 = document.getElementById("highestBid");
             elm2.innerHTML = "<b>Highest Bid: </b>"+updateHighBid;
+            let updateHighBidder = await highestBidder();
+            elm3.innerHTML = "<b>Highest Bidder: </b>"+updateHighBidder;
+            let updateContract = await ownerFunds();
+            elm.innerHTML = "<b>Contract Balance: </b>"+updateContract;
+            let updateFunds = await bidder1Funds();
+            elm1.innerHTML = "<b>Highest Bid: </b>"+updateFunds;
           } catch (e) {
               console.log("Bidding unsuccessful");
           }
