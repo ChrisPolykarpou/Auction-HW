@@ -38,7 +38,7 @@ window.addEventListener('load', async () => {
         return funds;
       }
       const bidder2Funds = async () => {
-        let funds = await AuctionContract.methods.getBidderFunds({from: bidder2}).call();
+        let funds = await AuctionContract.methods.getBidderFunds().call({from: bidder2});
         return funds;
       }
       const bid2 = async () => {
@@ -46,7 +46,7 @@ window.addEventListener('load', async () => {
         return succeed;
       }
       const withdraw2 = async () => {
-        let succeed = await AuctionContract.methods.withdraw({from: bidder2});
+        let succeed = await AuctionContract.methods.withdraw().send({from: bidder2});
         return succeed;
       }
 
