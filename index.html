@@ -24,21 +24,21 @@
     const eth = new Eth(web3.currentProvider);
     const contract = new EthContract(eth);
     const MiniToken = contract(abi);
-    const contract = MiniToken.at(contractAdd);
+    const AuctionContract = MiniToken.at(AuctionContractAdd);
 
 
-    //var contract = new web3.eth.Contract(abi, contractAdd);
+    //var AuctionContract = new web3.eth.Contract(abi, AuctionContractAdd);
 
     const ownerFunds = async () => {
-      let funds = await contract.methods.getContractBalance().call();
+      let funds = await AuctionContract.methods.getAuctionContractBalance().call();
       return funds;
     }
     const bidder1Funds = async () => {
-      let funds = await contract.methods.getBidderFunds({from: bidder1}).call();
+      let funds = await AuctionContract.methods.getBidderFunds({from: bidder1}).call();
       return funds;
     }
     const bidder2Funds = async () => {
-      let funds = await contract.methods.getBidderFunds({from: bidder2}).call();
+      let funds = await AuctionContract.methods.getBidderFunds({from: bidder2}).call();
       return funds;
     }
 
