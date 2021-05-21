@@ -48,11 +48,11 @@ window.addEventListener('load', async () => {
         return funds;
       }
       const bid1 = async () => {
-        let succeed = await AuctionContract.methods.bid();
+        let succeed = await AuctionContract.methods.bid().send({from: bidder1, value: 5});
         return succeed;
       }
       const bid2 = async () => {
-        let succeed = await AuctionContract.methods.bid({value: 10, from: bidder2});
+        let succeed = await AuctionContract.methods.bid().send({from: bidder2, value: 5});
         return succeed;
       }
       const withdraw1 = async () => {
