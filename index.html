@@ -47,7 +47,7 @@
         let funds;
         funds = await ownerFunds();
         var elm = document.getElementById("ownerFunds");
-        elm.innerHTML = funds;
+        elm.innerHTML = "2";
 
         funds = await bidder1Funds();
         var elm1 = document.getElementById("bidder1Funds");
@@ -55,7 +55,7 @@
 
         funds = await bidder2Funds();
         var elm2 = document.getElementById("bidder2Funds");
-        elm.innerHTML = "2";
+        elm.innerHTML = funds;
       } catch (error) {
         // User denied account access...
       }
