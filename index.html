@@ -42,12 +42,13 @@
     if (window.ethereum) {
       window.web3 = new Web3(ethereum);
       try {
-        console.log("PASS");
+
         // Request account access if needed
         await ethereum.enable();
         ownerFunds = await ownerFunds();
         var elm = document.getElementById("ownerFunds");
         elm.innerHTML = ownerFunds;
+        console.log("PASS");
 
         bidder1Funds = await ownerFunds();
         var elm1 = document.getElementById("bidder1Funds");
