@@ -75,19 +75,30 @@ window.addEventListener('load', async () => {
           var elm = document.getElementById("balance");
           elm.innerHTML = "<b>Contract Balance: </b>"+funds;
 
-          funds = await bidder1Funds();
-          var elm1 = document.getElementById("bidderFunds");
-          elm1.innerHTML = funds;
-          console.log("bid okay");
-
-          // let highBid = await highestBid();
-          // var elm2 = document.getElementById("highestBid");
-          // elm2.innerHTML = "<b>Highest Bid: </b>"+highBid;
-          //
-          // let highBidder = await highestBidder();
-          // var elm3 = document.getElementById("highestBidder");
-          // elm3.innerHTML = "<b>Highest Bidder: </b>"+highBidder;
-
+          try{
+            funds = await bidder1Funds();
+            var elm1 = document.getElementById("bidderFunds");
+            elm1.innerHTML = funds;
+          } catch{
+            var elm1 = document.getElementById("bidderFunds");
+            elm1.innerHTML = 0;
+          }
+          try{
+            let highBid = await highestBid();
+            var elm2 = document.getElementById("highestBid");
+            elm2.innerHTML = "<b>Highest Bid: </b>"+highBid;
+          } catch{
+            var elm2 = document.getElementById("highestBid");
+            elm2.innerHTML = "<b>Highest Bid: </b>"+"none";
+          }
+          try{
+            let highBidder = await highestBidder();
+            var elm3 = document.getElementById("highestBidder");
+            elm3.innerHTML = "<b>Highest Bidder: </b>"+highBidder;
+          } catch{
+              var elm3 = document.getElementById("highestBidder");
+              elm3.innerHTML = "<b>Highest Bidder: </b>"+"none";
+          }
         } catch (error) {
           // User denied account access...
         }
