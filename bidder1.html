@@ -85,7 +85,7 @@ window.addEventListener('load', async () => {
           let highBidder = await highestBidder();
           var elm3 = document.getElementById("highestBidder");
           elm.innerHTML = highBidder;
-
+          console.log("OK");
         } catch (error) {
           // User denied account access...
         }
