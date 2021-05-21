@@ -112,7 +112,7 @@ window.addEventListener('load', async () => {
             console.log("Bidding unsuccessful");
           let updateHighBid = await highestBid();
           var elm2 = document.getElementById("highestBid");
-          elm2.innerHTML = "<b>Highest Bid: </b>"+highBid;
+          elm2.innerHTML = "<b>Highest Bid: </b>"+updateHighBid;
         });
 
         withdraw.addEventListener("click", async() => {
