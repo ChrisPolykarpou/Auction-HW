@@ -106,10 +106,15 @@ window.addEventListener('load', async () => {
         var bid = document.getElementById("bidBtn");
         var withdraw = document.getElementById("withdrawBtn");
         bid.addEventListener("click", async() => {
-          console.log("TEST");
+          let bidding = await bid1();
+          if(!bidding)
+            console.log("Bidding unsuccessful");
+          let updateHighBid = await highestBid();
+          var elm2 = document.getElementById("highestBid");
+          elm2.innerHTML = "<b>Highest Bid: </b>"+highBid;
         });
         withdraw.addEventListener("click", async() => {
-          console.log("TEST");
+
         });
       }
       // Non-dapp browsers...
