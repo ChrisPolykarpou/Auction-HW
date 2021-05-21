@@ -48,19 +48,19 @@ window.addEventListener('load', async () => {
         return funds;
       }
       const bid1 = async () => {
-        let succeed = await AuctionContract.methods.bid().send({value: 5, from: bidder1});
+        let succeed = await AuctionContract.methods.bid({value: 5, from: bidder1});
         return succeed;
       }
       const bid2 = async () => {
-        let succeed = await AuctionContract.methods.bid().send({value: 10, from: bidder2});
+        let succeed = await AuctionContract.methods.bid({value: 10, from: bidder2});
         return succeed;
       }
       const withdraw1 = async () => {
-        let succeed = await AuctionContract.methods.withdraw().send({from: bidder1});
+        let succeed = await AuctionContract.methods.withdraw({from: bidder1});
         return succeed;
       }
       const withdraw2 = async () => {
-        let succeed = await AuctionContract.methods.withdraw().send({from: bidder2});
+        let succeed = await AuctionContract.methods.withdraw({from: bidder2});
         return succeed;
       }
 
@@ -105,6 +105,7 @@ window.addEventListener('load', async () => {
         // Buttons Code
         var bid = document.getElementById("bidBtn");
         var withdraw = document.getElementById("withdrawBtn");
+
         bid.addEventListener("click", async() => {
           let bidding = await bid1();
           if(!bidding)
@@ -113,6 +114,7 @@ window.addEventListener('load', async () => {
           var elm2 = document.getElementById("highestBid");
           elm2.innerHTML = "<b>Highest Bid: </b>"+highBid;
         });
+
         withdraw.addEventListener("click", async() => {
 
         });
