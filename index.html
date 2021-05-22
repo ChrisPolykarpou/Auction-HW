@@ -26,7 +26,7 @@
     var AuctionContract = new window.web3.eth.Contract(abi, contractAdd);
 
     const ownerFunds = async () => {
-      let funds = await AuctionContract.methods.getContractBalance().call();
+      let funds = await AuctionContract.methods.getBidderFunds().call({from: owner});
       return funds;
     }
     const bidder1Funds = async () => {
@@ -95,7 +95,7 @@
 <div class="menu">
   <nav>
     <div class="nav-wrapper">
-      <a href=".html" class="brand-logo right">Auction Dapp</a>
+      <a href="index.html" class="brand-logo right">Auction Dapp</a>
       <ul id="nav-mobile" class="left hide-on-med-and-down">
         <li><a href="bidder1.html">Bidder1</a></li>
         <li><a href="bidder2.html">Bidder2</a></li>
