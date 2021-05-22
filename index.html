@@ -52,7 +52,7 @@
           let funds = await ownerFunds();
           var elm = document.getElementById("ownerFunds");
           elm.innerHTML = funds;
-        }catch(e){
+        }catch(error){
           var elm = document.getElementById("ownerFunds");
           elm.innerHTML = 0;
         }
