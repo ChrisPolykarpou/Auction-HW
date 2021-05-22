@@ -95,14 +95,7 @@ window.addEventListener('load', async () => {
         bid.addEventListener("click", async() => {
           try {
             let bidding = await bid1();
-            let updateHighBid = await highestBid();
-            elm2.innerHTML = "<b>Highest Bid: </b>"+updateHighBid;
-            let updateHighBidder = await highestBidder();
-            elm3.innerHTML = "<b>Highest Bidder: </b>"+updateHighBidder;
-            let updateContract = await ownerFunds();
-            elm.innerHTML = "<b>Contract Balance: </b>"+updateContract;
-            let updateFunds = await bidder1Funds();
-            elm1.innerHTML = "<b>Highest Bid: </b>"+updateFunds;
+            location.reload();
           } catch (e) {
               console.log("Bidding unsuccessful");
           }
@@ -111,8 +104,7 @@ window.addEventListener('load', async () => {
         withdraw.addEventListener("click", async() => {
           try{
             let withdraw = await withdraw1();
-            let updateContract = await ownerFunds();
-            elm.innerHTML = "<b>Contract Balance: </b>"+updateContract;
+            location.reload();
           } catch(e){
             console.log("You are not able to withdraw!");
           }

@@ -76,8 +76,7 @@
       rec.addEventListener('click', async () => {
         try{
           let receive = await withdraw();
-          let updateFunds = await ownerFunds();
-          elm.innerHTML = updateFunds;
+          location.reload();
         }catch(e){
           console.log("Unable to withdraw");
         }
