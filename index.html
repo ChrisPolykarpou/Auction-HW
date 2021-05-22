@@ -82,7 +82,8 @@
       rec.addEventListener('click', async () => {
         try{
           let receive = await withdraw();
-          location.reload();
+          window.location.reload();
+          return false;
         }catch(e){
           console.log("Unable to withdraw");
         }
