@@ -14,7 +14,7 @@
 <script language="javascript" type="text/javascript" src="abi.js"></script>
 <script>
   window.addEventListener('load', async () => {
-    const contractAdd = "0x87A44b39666B8d0F21b18953840fD2720ba1984e";
+    const contractAdd = "0xeecCC0158baf3563984110e3Ce4E00E7185db2E2";
     const owner = "0x23dFC16Dd3afB156928081043aDdbBCaEE64C493";
     const bidder1 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
     const bidder2 = "0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7";
@@ -25,10 +25,6 @@
     }
     var AuctionContract = new window.web3.eth.Contract(abi, contractAdd);
 
-    const ownerFunds = async () => {
-      let funds = await AuctionContract.methods.getBidderFunds().call({from: owner});
-      return funds;
-    }
     const bidder1Funds = async () => {
       let funds = await AuctionContract.methods.getBidderFunds().call({from: bidder1});
       return funds;
@@ -41,6 +37,10 @@
       let succeed = await AuctionContract.methods.withdrawOwner().send({from: owner});
       return succeed;
     }
+    const ownerFunds = async () => {
+      let funds = await AuctionContract.methods.getBidderFunds().call({from: owner});
+      return funds;
+    }
 
     // Modern dapp browsers...
     if (window.ethereum) {
@@ -48,16 +48,6 @@
       try {
         // Request account access if needed
         await ethereum.enable();
-        try{
-          let funds = await ownerFunds();
-          var elm = document.getElementById("ownerFunds");
-          elm.innerHTML = funds;
-        }catch(error){
-          var elm = document.getElementById("ownerFunds");
-          elm.innerHTML = 0;
-        }
-
-
         try{
           let funds1 = await bidder1Funds();
           var elm1 = document.getElementById("bidder1Funds");
@@ -73,6 +63,14 @@
         } catch(error){
             var elm2 = document.getElementById("bidder2Funds");
             elm2.innerHTML = 0;
+        }
+        try{
+          let funds = await ownerFunds();
+          var elm = document.getElementById("ownerFunds");
+          elm.innerHTML = funds;
+        }catch(error){
+          var elm = document.getElementById("ownerFunds");
+          elm.innerHTML = 0;
         }
 
       } catch (error) {
