@@ -69,10 +69,10 @@ async function update(){
           try{
             funds = await bidder2Funds();
             var elm1 = document.getElementById("bidderFunds");
-            elm1.innerHTML = "<b>Highest Bid: </b>"+funds;
+            elm1.innerHTML = "<b>Total: </b>"+funds;
           } catch(error){
             var elm1 = document.getElementById("bidderFunds");
-            elm1.innerHTML = "<b>Highest Bid: </b>"+0;
+            elm1.innerHTML = "<b>Total: </b>"+0;
           }
           try{
             let highBid = await highestBid();
