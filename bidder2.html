@@ -16,7 +16,8 @@
 window.addEventListener('load', async () => {
 
       const contractAdd = "0xe05d522cdBA3DD9aEba6cB41a4F2712E8c4F1C27";
-      const bidder2 = "0xda60f5665A5672Fa3D97892272846f36A518f382";
+      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+      const bidder2 = accounts[2];
 
       if (window.ethereum) {
           window.web3 = new Web3(window.ethereum);
