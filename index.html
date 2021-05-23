@@ -42,7 +42,7 @@
         await ethereum.enable();
         // View account addresses to website
         var acc = document.getElementById("ownerAcc");
-        acc1.innerHTML = owner;
+        acc1.innerHTML = acc;
         try{
           let funds = await accFunds();
           var elm = document.getElementById("ownerFunds");
