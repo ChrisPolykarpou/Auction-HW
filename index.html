@@ -41,7 +41,7 @@
         // Request account access if needed
         await ethereum.enable();
         // View account addresses to website
-        var acc = document.getElementById("ownerAcc");
+        var acc1 = document.getElementById("ownerAcc");
         acc1.innerHTML = acc;
         try{
           let funds = await accFunds();
@@ -107,7 +107,7 @@
           </tr>
         </tbody>
       </table>
-      <button id="ownerBtn" class="btn waves-effect waves-light right" type="submit" name="action">Withdraw bidding (owner)
+      <button id="ownerBtn" class="btn waves-effect waves-light right" type="submit" name="action">Receive bidding (1st-Account)
         <i class="material-icons right">send</i>
       </button>
 </div>
