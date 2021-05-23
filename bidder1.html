@@ -57,6 +57,9 @@ window.addEventListener('load', async () => {
         try {
           // Request account access if needed
           await ethereum.enable();
+          // View account addresses to website
+          var acc1 = document.getElementById("bidderAcc");
+          acc1.innerHTML = "<b>Address: </b>"+bidder1;
           let funds;
           funds = await ownerFunds();
           var elm = document.getElementById("balance");
@@ -141,7 +144,7 @@ window.addEventListener('load', async () => {
     <div class="col s6 info">
       <h5>Bidder's Info</h5>
       <p><b>Name: </b>Bidder1</p>
-      <p><b>Address: </b>0x4a471Bc9219261556F0CA394Cd9b43f4f694c4E7</p>
+      <p id="bidderAcc"><b>Address: </b></p>
       <p id="bidderFunds"><b>Total Bid: </b></p>
     </div>
     <div class="col s6 info">
