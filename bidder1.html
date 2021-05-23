@@ -100,7 +100,7 @@ async function update(){
         bid.addEventListener("click", async() => {
           try {
             let bidding = await bid1();
-            window.location.reload();
+            update();
             return false;
           } catch (e) {
               console.log("Bidding unsuccessful");
@@ -110,7 +110,7 @@ async function update(){
         withdraw.addEventListener("click", async() => {
           try{
             let withdraw = await withdraw1();
-            window.location.reload();
+            update();
             return false;
           } catch(e){
             console.log("You are not able to withdraw!");
